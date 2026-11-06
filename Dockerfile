@@ -1,5 +1,5 @@
 # Use an official Node.js image as the base (LTS version for stability)
-FROM node:18-alpine AS builder
+FROM node:16-alpine AS builder
 
 # Set the working directory inside the container
 WORKDIR /app
@@ -20,7 +20,7 @@ ENV SKIP_PREFLIGHT_CHECK=true
 RUN npm run build
 
 # ---- Production Stage ----
-FROM node:18-alpine
+FROM node:16-alpine
 
 # Set the working directory
 WORKDIR /app
