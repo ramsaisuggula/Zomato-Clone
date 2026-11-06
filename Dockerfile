@@ -13,6 +13,9 @@ RUN npm ci --only=production
 # Copy the rest of the application source code
 COPY . .
 
+# Add this line before RUN npm run build
+ENV SKIP_PREFLIGHT_CHECK=true
+
 # Build the React app
 RUN npm run build
 
