@@ -8,7 +8,8 @@ WORKDIR /app
 COPY package*.json ./
 
 # Install dependencies in a clean environment
-RUN npm ci --only=production
+RUN npm install --legacy-peer-deps
+
 
 # Copy the rest of the application source code
 COPY . .
