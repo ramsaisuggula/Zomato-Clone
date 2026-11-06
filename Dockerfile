@@ -1,5 +1,5 @@
 # Use an official Node.js image as the base (LTS version for stability)
-FROM node:16-alpine AS builder
+FROM node:22-alpine AS builder
 
 # Set the working directory inside the container
 WORKDIR /app
@@ -8,20 +8,17 @@ WORKDIR /app
 COPY package*.json ./
 
 # Install dependencies in a clean environment
-RUN npm install --legacy-peer-deps
+RUN npm install
 
 
 # Copy the rest of the application source code
 COPY . .
 
-# Add this line before RUN npm run build
-ENV SKIP_PREFLIGHT_CHECK=true
-
 # Build the React app
 RUN npm run build
 
 # ---- Production Stage ----
-FROM node:16-alpine
+FROM node:22-alpine
 
 # Set the working directory
 WORKDIR /app
